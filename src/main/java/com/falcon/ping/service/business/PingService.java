@@ -2,6 +2,7 @@ package com.falcon.ping.service.business;
 
 import com.falcon.ping.service.client.PongClient;
 import com.falcon.ping.service.config.ConfigProperties;
+import com.falcon.ping.service.exception.PongClientException;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,11 +16,7 @@ public class PingService {
 
     @Autowired
     private PongClient pongClient;
-    public void sendPing(){
-        try{
-            pongClient.pingToPong();
-        }catch (Exception e){
-            log.info(e.getMessage());
-        }
+    public void sendPing() throws PongClientException {
+        pongClient.pingToPong();
     }
 }
